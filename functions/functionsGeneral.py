@@ -1,3 +1,7 @@
+
+"""
+    file to get a doctor's slots
+"""
 from datetime import date, datetime, time, timedelta
 
 def generateSlots(shiftStart: time, shiftEnd: time, slotDuration: int = 30) -> list[time]:

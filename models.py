@@ -1,7 +1,11 @@
-from sqlalchemy import Column, String, Time, Integer, Date, ForeignKey, Enum as sqlEnum, UniqueConstraint
+"""
+    file defines the classes that map directly onto the db tables to allow querying and row manipulations as ordinary python objects
+"""
+from sqlalchemy import Column, String, Time, Integer, Date, ForeignKey, Enum as sqlEnum
 from database import Base
 import enum
 
+# wemadoctors table in the db
 class Doctors(Base):
     __tablename__ = 'wemadoctors'
 
@@ -11,10 +15,12 @@ class Doctors(Base):
     doctorshiftstart = Column(Time(timezone=False), nullable=False)
     doctorshiftend = Column(Time(timezone=False), nullable=False)
 
+# define the states of valid appointments for the status column
 class AppointmentStatus(str, enum.Enum):
     booked = "booked"
     cancelled = "cancelled"
 
+# wemapatients table in the db
 class Patient(Base):
     __tablename__ = "wemapatients"
 
@@ -22,6 +28,7 @@ class Patient(Base):
     patientname = Column(String, nullable=False)
     patientemail = Column(String, nullable=False)
 
+# wemaappointments table in the db
 class Appointment(Base):
     __tablename__ = "wemaappointments"
 
